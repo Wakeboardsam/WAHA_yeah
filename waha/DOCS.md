@@ -6,6 +6,74 @@ WAHA (WhatsApp HTTP API) is a self-hosted REST API for WhatsApp. This add-on run
 
 ---
 
+## Installation
+
+### Standard Installation
+
+1. Go to **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
+2. Add `https://github.com/sushiljain1989/hassio-addons`
+3. Find **WAHA WhatsApp** in the store and click **Install**
+4. Start the add-on
+
+---
+
+### Manual Installation (if repository add fails)
+
+If you cannot add the repository through the UI, you can install the add-on by copying the files directly onto your Home Assistant machine.
+
+#### Step 1 — Access your Home Assistant filesystem
+
+You need access to the HA filesystem. Use any one of the following options:
+
+**Option A — File Editor add-on** (simplest, browser-based)
+1. Install the **File Editor** add-on from the Add-on Store
+2. Open it and navigate to `/addons/`
+
+**Option B — Visual Studio Code add-on** (best for editing files)
+1. Install the **Studio Code Server** add-on from the Add-on Store
+2. Open it — you get a full VS Code editor with access to the entire HA filesystem
+3. Navigate to `/addons/`
+
+#### Step 2 — Find your device architecture
+
+In the **Terminal** tab of the SSH add-on or the VS Code terminal, run:
+
+```bash
+ha info | grep arch
+```
+
+| Output | Architecture | Device |
+|---|---|---|
+| `aarch64` | aarch64 | Raspberry Pi 4, Raspberry Pi 5 |
+| `x86_64` | amd64 | x86 PC, Intel NUC, VM |
+
+#### Step 3 — Copy the addon folder
+
+Download or clone the repository from `https://github.com/sushiljain1989/hassio-addons` and copy the entire `waha/` folder into `/addons/` on your HA machine.
+
+#### Step 4 — Edit the Dockerfile for your architecture
+
+Open `waha/Dockerfile` and replace the entire first two lines with a single `FROM` line matching your architecture from Step 2:
+
+For **aarch64 (Raspberry Pi)**:
+```dockerfile
+FROM devlikeapro/waha:arm-2026.4.3
+```
+
+For **amd64 (x86 / NUC / VM)**:
+```dockerfile
+FROM devlikeapro/waha:2026.4.3
+```
+
+#### Step 5 — Install from local add-on store
+
+1. Go to **Settings → Add-ons → Add-on Store**
+2. Click **⋮ → Check for updates**
+3. The **WAHA WhatsApp** add-on will appear under **Local add-ons**
+4. Click **Install**
+
+---
+
 ## First-Time Setup
 
 > **⚠️ Security:** The default API key and dashboard password in this add-on are public and must be changed before use. Set `WAHA_API_KEY`, `WAHA_DASHBOARD_USERNAME`, and `WAHA_DASHBOARD_PASSWORD` to your own values in the add-on configuration.
