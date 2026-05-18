@@ -2,6 +2,8 @@
 
 Run [WAHA (WhatsApp HTTP API)](https://waha.devlike.pro) as a native Home Assistant add-on on your own hardware — no external services, no cloud dependency.
 
+> **⚠️ Legal Warning:** This add-on violates WhatsApp's Terms of Service. WhatsApp prohibits reverse engineering their service and using unofficial third-party clients or APIs. Using this add-on may result in your WhatsApp account being temporarily or permanently banned. **Use at your own risk.** See [Disclaimer](#disclaimer) for details.
+
 ## What is WAHA?
 
 WAHA is a self-hosted REST API for WhatsApp. It runs as a Docker container and exposes HTTP endpoints to send and receive WhatsApp messages programmatically. This add-on wraps WAHA for seamless use inside Home Assistant OS.
@@ -131,3 +133,11 @@ Media files are stored temporarily at `/tmp/whatsapp-files` with a 180 second li
 - Not affiliated with or endorsed by WhatsApp/Meta
 - Uses [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) engine by default
 - WhatsApp may ban accounts that use unofficial APIs — use at your own risk
+
+## Disclaimer
+
+This project is provided **as-is**, without any warranty of any kind, express or implied. The author is not affiliated with, endorsed by, or in any way associated with WhatsApp, Meta, or any of their subsidiaries.
+
+Use of this add-on may violate WhatsApp's Terms of Service. You assume full responsibility for any consequences, including account suspension or ban. The author accepts no liability for any damage, data loss, legal issues, or other harm arising from the use or misuse of this software.
+
+This project is licensed under the [MIT License](./LICENSE).

@@ -329,3 +329,17 @@ You only need to scan the QR code once. If you **logout** (not stop) the session
 
 **Web UI not accessible**
 - Try `http://<your-ha-ip>:3000/dashboard` directly in your browser.
+
+---
+
+## Disclaimer & Legal Warning
+
+**This add-on violates WhatsApp's Terms of Service.**
+
+WhatsApp explicitly prohibits reverse engineering their service and using unofficial third-party clients or APIs. WAHA works by reverse-engineering the WhatsApp Web protocol, which is unauthorized by WhatsApp/Meta.
+
+**Risks include:**
+- Temporary or permanent ban of your WhatsApp account
+- Legal action by WhatsApp/Meta in extreme cases
+
+This software is provided **as-is** with no warranties. The author is not affiliated with WhatsApp or Meta and accepts no liability for any consequences arising from its use. **Use at your own risk.**
