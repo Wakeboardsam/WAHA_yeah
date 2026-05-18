@@ -1,0 +1,22 @@
+# Session data
+.sessions/
+*.session
+*.db
+
+# Environment / secrets
+.env
+*.env
+secrets.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log

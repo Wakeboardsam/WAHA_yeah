@@ -13,4 +13,5 @@ ports_description:
 webui: "http://[HOST]:[PORT:3000]"
 map:
   - data:rw
+homeassistant: "2023.1.0"
 url: https://waha.devlike.pro

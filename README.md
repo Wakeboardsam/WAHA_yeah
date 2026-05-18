@@ -30,6 +30,8 @@ WAHA is a self-hosted REST API for WhatsApp. It runs as a Docker container and e
 
 ## First-Time Setup
 
+> **⚠️ Security:** The default API key and dashboard password in this add-on are public and must be changed before use. Set `WAHA_API_KEY`, `WAHA_DASHBOARD_USERNAME`, and `WAHA_DASHBOARD_PASSWORD` to your own values in the add-on configuration.
+
 1. Open the Web UI (`http://<your-ha-ip>:3000/dashboard`)
 2. Log in with `admin` / `waha_fixed_password_2026`
 3. Start the `default` session
@@ -134,10 +136,48 @@ Media files are stored temporarily at `/tmp/whatsapp-files` with a 180 second li
 - Uses [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) engine by default
 - WhatsApp may ban accounts that use unofficial APIs — use at your own risk
 
-## Disclaimer
+## Disclaimer & Legal Notice
 
-This project is provided **as-is**, without any warranty of any kind, express or implied. The author is not affiliated with, endorsed by, or in any way associated with WhatsApp, Meta, or any of their subsidiaries.
+> **By installing or using this add-on you explicitly and irrevocably accept all terms in the [LICENSE](./LICENSE). If you do not agree, do not install or use this software.**
 
-Use of this add-on may violate WhatsApp's Terms of Service. You assume full responsibility for any consequences, including account suspension or ban. The author accepts no liability for any damage, data loss, legal issues, or other harm arising from the use or misuse of this software.
+**This project is provided as-is, without any warranty of any kind, express or implied.**
 
-This project is licensed under the [MIT License](./LICENSE).
+The author (Sushil Jain) is not affiliated with, endorsed by, or in any way associated with WhatsApp, Meta, the WAHA project, or the Home Assistant project.
+
+### WhatsApp Terms of Service
+
+This add-on violates WhatsApp's Terms of Service. WhatsApp explicitly prohibits reverse engineering their service and using unofficial third-party clients or APIs. Using this add-on may result in your WhatsApp account being **temporarily or permanently banned** and may expose you to legal action by Meta/WhatsApp.
+
+### Intended Use
+
+This software is intended for **personal, non-commercial, educational use only** on your own private hardware. It must **not** be used for:
+- Bulk or automated mass messaging
+- Spam or unsolicited commercial communications
+- Operating a messaging service for third parties
+- Any purpose that violates applicable laws or regulations
+
+### Privacy & Data Protection
+
+You are the sole data controller for any personal data processed through your use of this software. You are solely responsible for compliance with GDPR, BDSG (Germany), CCPA, and all other applicable data protection laws. The author is neither a data processor nor a data controller and bears no liability for any data breach or regulatory penalty.
+
+### Security Responsibility
+
+The default credentials shipped in this add-on are **examples only** and are publicly visible on GitHub. You are solely responsible for changing them before deployment. The author accepts no liability for any security incident resulting from use of default or weak credentials.
+
+### No Support or Maintenance
+
+The author has no obligation to provide support, bug fixes, updates, or responses to issues or pull requests. This software may cease to function at any time without notice.
+
+### Limitation of Liability
+
+To the maximum extent permitted by law, the author accepts **zero liability** for any damage, data loss, account suspension, regulatory fines, legal costs, or any other harm — direct or indirect — arising from the use or misuse of this software. The author's total cumulative liability shall not exceed **€0.00**.
+
+### Indemnification
+
+By using this software, you agree to fully indemnify and hold harmless the author from any and all claims, losses, damages, liabilities, and costs (including attorney fees) arising from your use of the software, your violation of any law or third-party terms of service, or any messages transmitted through your use of the software.
+
+### Governing Law
+
+This license is governed by the laws of the **Federal Republic of Germany**. Any disputes shall be subject to the exclusive jurisdiction of the courts of **Mannheim, Germany**.
+
+See the full [LICENSE](./LICENSE) for complete terms including all warranties, limitations, indemnification, prohibited uses, and jurisdiction clauses.
