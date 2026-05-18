@@ -1,0 +1,133 @@
+# WAHA WhatsApp Add-on for Home Assistant
+
+Run [WAHA (WhatsApp HTTP API)](https://waha.devlike.pro) as a native Home Assistant add-on on your own hardware — no external services, no cloud dependency.
+
+## What is WAHA?
+
+WAHA is a self-hosted REST API for WhatsApp. It runs as a Docker container and exposes HTTP endpoints to send and receive WhatsApp messages programmatically. This add-on wraps WAHA for seamless use inside Home Assistant OS.
+
+## Supported Architectures
+
+| Architecture | Device | Docker Image |
+|---|---|---|
+| `aarch64` | Raspberry Pi 4, Raspberry Pi 5 | `devlikeapro/waha:arm-2026.4.3` |
+| `amd64` | x86 PC, Intel NUC, VM | `devlikeapro/waha:2026.4.3` |
+
+> **Note:** The `Dockerfile` uses `ARG BUILD_FROM` / `FROM ${BUILD_FROM}`. When you install this add-on, Home Assistant builds it locally and injects the correct base image for your device's architecture from `build.yaml`.
+
+## Installation
+
+1. Go to **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
+2. Add this repository URL:
+   ```
+   https://github.com/sushiljain1989/hassio-addons
+   ```
+3. Find **WAHA WhatsApp** in the store and click **Install**
+4. Start the add-on
+5. Open the Web UI and complete first-time setup (see DOCS)
+
+## First-Time Setup
+
+1. Open the Web UI (`http://<your-ha-ip>:3000/dashboard`)
+2. Log in with `admin` / `waha_fixed_password_2026`
+3. Start the `default` session
+4. Scan the QR code in WhatsApp: **Settings → Linked Devices → Link a Device**
+5. Session will show as **WORKING** — you only need to scan once
+
+## Sending WhatsApp Messages from Home Assistant
+
+Add to `configuration.yaml`:
+
+```yaml
+rest_command:
+  send_whatsapp:
+    url: "http://localhost:3000/api/sendText"
+    method: POST
+    headers:
+      Content-Type: application/json
+      X-Api-Key: "waha_fixed_key_2026"
+    payload: '{"chatId": "{{ phone }}@c.us", "text": "{{ message }}", "session": "default"}'
+
+  waha_start_session:
+    url: "http://localhost:3000/api/sessions/default/start"
+    method: POST
+    headers:
+      X-Api-Key: "waha_fixed_key_2026"
+```
+
+Use in automations:
+
+```yaml
+service: rest_command.send_whatsapp
+data:
+  phone: "491234567890"
+  message: "Motion detected in the garden!"
+```
+
+## Auto-start Session After Reboot
+
+Add to `automations.yaml`:
+
+```yaml
+- alias: "Start WAHA session on startup"
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - delay: "00:00:30"
+    - service: rest_command.waha_start_session
+```
+
+## Environment Variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `WAHA_API_KEY` | `waha_fixed_key_2026` | API key for REST requests |
+| `WAHA_DASHBOARD_USERNAME` | `admin` | Dashboard login username |
+| `WAHA_DASHBOARD_PASSWORD` | `waha_fixed_password_2026` | Dashboard login password |
+| `WAHA_DEFAULT_SESSION` | `default` | Default session name |
+| `WAHA_LOCAL_STORE_BASE_DIR` | `/data/.sessions` | Session persistence directory |
+| `WHATSAPP_DEFAULT_ENGINE` | `WEBJS` | WhatsApp engine (`WEBJS`, `NOWEB`, `GOWS`) |
+| `WAHA_LOG_LEVEL` | `info` | Log level (`error`, `warn`, `info`, `debug`) |
+| `WHATSAPP_API_PORT` | `3000` | API port |
+| `TZ` | — | Timezone (e.g. `Europe/Berlin`) |
+| `WHATSAPP_HOOK_URL` | — | Webhook URL for incoming events |
+| `WHATSAPP_HOOK_EVENTS` | — | Events to send to webhook (e.g. `message,session.status`) |
+| `WAHA_CLIENT_DEVICE_NAME` | — | Name shown in WhatsApp Linked Devices |
+
+## Session API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/sessions` | Create a new session |
+| `GET` | `/api/sessions` | List all sessions |
+| `GET` | `/api/sessions/{session}` | Get session status |
+| `POST` | `/api/sessions/{session}/start` | Start a session |
+| `POST` | `/api/sessions/{session}/stop` | Stop a session |
+| `POST` | `/api/sessions/{session}/restart` | Restart a session |
+| `POST` | `/api/sessions/{session}/logout` | Logout and clear auth |
+| `DELETE` | `/api/sessions/{session}` | Delete session |
+| `GET` | `/api/{session}/auth/qr` | Get QR code image |
+
+## Session Status States
+
+| Status | Meaning |
+|---|---|
+| `STOPPED` | Not running |
+| `STARTING` | Initializing |
+| `SCAN_QR_CODE` | Waiting for QR scan (expires in 60-120s) |
+| `WORKING` | Connected and ready |
+| `FAILED` | Error — restart or re-authenticate |
+
+## Storage
+
+Session data is stored in HA persistent storage at `/data/.sessions` and survives add-on restarts and HA reboots. You only need to scan the QR code once.
+
+Media files are stored temporarily at `/tmp/whatsapp-files` with a 180 second lifetime by default.
+
+## Notes
+
+- Uses WAHA CORE (free) — no paid subscription required
+- Not affiliated with or endorsed by WhatsApp/Meta
+- Uses [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) engine by default
+- WhatsApp may ban accounts that use unofficial APIs — use at your own risk

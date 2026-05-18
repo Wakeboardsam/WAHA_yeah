@@ -1,0 +1,16 @@
+name: "WAHA WhatsApp"
+description: "WhatsApp HTTP API - Send and receive WhatsApp messages via REST API"
+version: "1.0.0"
+slug: "waha"
+init: false
+arch:
+  - aarch64
+  - amd64
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "WAHA Web UI and REST API"
+webui: "http://[HOST]:[PORT:3000]"
+map:
+  - data:rw
+url: https://waha.devlike.pro
