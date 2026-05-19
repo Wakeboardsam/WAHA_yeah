@@ -21,14 +21,10 @@ WAHA is a self-hosted REST API for WhatsApp. It runs as a Docker container and e
 
 ### Standard Installation
 
-1. Go to **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
-2. Add this repository URL:
-   ```
-   https://github.com/sushiljain1989/hassio-addons
-   ```
+1. Go to **Settings → Apps → Install App  → Respositories(triple dot - top right) → Add**
+2. Add `https://github.com/sushiljain1989/hassio-addons`
 3. Find **WAHA WhatsApp** in the store and click **Install**
-4. Start the add-on
-5. Open the Web UI and complete first-time setup (see DOCS)
+4. Start the add-on(See Docs)
 
 ### Manual Installation (if repository add fails)
 
@@ -80,10 +76,9 @@ FROM devlikeapro/waha:2026.4.3
 
 #### Step 5 — Install from local add-on store
 
-1. Go to **Settings → Add-ons → Add-on Store**
-2. Click **⋮ → Check for updates**
-3. The **WAHA WhatsApp** add-on will appear under **Local add-ons**
-4. Click **Install**
+1. Go to **Settings → Apps → Install app**
+2. The **WAHA WhatsApp** add-on will appear under **Local add-ons**
+3. Click **Install**
 
 ## First-Time Setup
 
