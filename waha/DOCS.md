@@ -445,6 +445,3 @@ To the maximum extent permitted by law, the author accepts **zero liability** fo
 
 By using this software, you agree to fully indemnify and hold harmless the author from any and all claims, losses, damages, liabilities, and costs (including attorney fees) arising from your use of the software, your violation of any law or third-party terms of service, or any messages transmitted through your use of the software.
 
-### Governing Law
-
-This license is governed by the laws of the **Federal Republic of Germany**. Any disputes shall be subject to the exclusive jurisdiction of the courts of **Mannheim, Germany**.
