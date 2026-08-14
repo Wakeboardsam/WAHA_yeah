@@ -1,6 +1,6 @@
 name: "WAHA WhatsApp"
 description: "WhatsApp HTTP API - Send and receive WhatsApp messages via REST API"
-version: "1.1.02"
+version: "1.1.03"
 slug: "waha"
 init: false
 arch:
@@ -11,22 +11,7 @@ ports:
 ports_description:
   3000/tcp: "WAHA Web UI and REST API"
 webui: "http://[HOST]:[PORT:3000]/dashboard"
-
 map:
   - data:rw
 homeassistant: "2023.1.0"
 url: https://waha.devlike.pro
-schema:
-  waha_api_key: str?
-  waha_dashboard_username: str?
-  waha_dashboard_password: str?
-options:
-  waha_api_key: "Lotto_WA_Secret_2026"
-  waha_dashboard_username: "admin"
-  waha_dashboard_password: "waha_fixed_password_2026"
-environment:
-  WAHA_API_KEY: "waha_api_key"
-  WAHA_DASHBOARD_USERNAME: "waha_dashboard_username"
-  WAHA_DASHBOARD_PASSWORD: "waha_dashboard_password"
-  WHATSAPP_SWAGGER_USERNAME: "waha_dashboard_username"
-  WHATSAPP_SWAGGER_PASSWORD: "waha_dashboard_password"
