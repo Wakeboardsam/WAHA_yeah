@@ -10,7 +10,8 @@ ports:
   3000/tcp: 3000
 ports_description:
   3000/tcp: "WAHA Web UI and REST API"
-webui: "http://[HOST]:[PORT:3000]"
+webui: "http://[HOST]:[PORT:3000]/dashboard"
+
 map:
   - data:rw
 homeassistant: "2023.1.0"
