@@ -28,3 +28,5 @@ environment:
   WAHA_API_KEY: "waha_api_key"
   WAHA_DASHBOARD_USERNAME: "waha_dashboard_username"
   WAHA_DASHBOARD_PASSWORD: "waha_dashboard_password"
+  WHATSAPP_SWAGGER_USERNAME: "waha_dashboard_username"
+  WHATSAPP_SWAGGER_PASSWORD: "waha_dashboard_password"
